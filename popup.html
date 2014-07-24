@@ -1,0 +1,82 @@
+<html>
+    <head>
+        <title>Random User-Agent</title>
+        <link rel="stylesheet" href="application.css" type="text/css" />
+    </head>
+<body style="width:320px">
+    <h1 class="header">User-Agent: <sup><a href="http://www.whatsmyuseragent.com/" target="_blank" data-resource="CheckActualUALink">check</a></sup></h1>
+
+    <div class="downed user-agent">
+        <div id="change-ua-now" data-resource="ChangeUANow">Update</div>
+        <div id="reset-ua-now" data-resource="ResetUANow">Reset</div>
+        <div id="user-agent-now"></div>
+    </div>
+    
+    <div class="subheader">
+        <input type="checkbox" id="autochange" /><label for="autochange"></label><span data-resource="AutoChangeEvery">Update every</span>
+        <select id="change-timer"><option value="5" selected="1">5</option>
+            <option value="10">10</option>
+            <option value="15">15</option>
+            <option value="20">20</option>
+            <option value="30">30</option>
+            <option value="40">40</option>
+            <option value="50">50</option>
+            <option value="60">60</option>
+            <option value="90">90</option>
+            <option value="120">120</option>
+        </select> <span data-resource="NMinutes">minutes</span>
+    </div>
+    
+    <h2 id="subpanel">
+        <span id="clients-all" class="openClose" data-resource="SettingsLink">Settings</span>
+        <span id="custom-useragent" class="openClose" data-resource="CustomValueLink">Custom value</span>
+    </h2>
+    
+    <div id="clients-all-content" class="downed openCloseObj">
+        <table>
+            <tr>
+                <td>
+                    <ul>
+                    <li><input type="checkbox" id="bIE10" /><label for="bIE10"></label><a id="IE10" href="#">Internet Explorer 10</a></li>
+                    <li><input type="checkbox" id="bIE9" /><label for="bIE9"></label><a id="IE9" href="#">Internet Explorer 9</a></li>
+                    <li><input type="checkbox" id="bIE8" /><label for="bIE8"></label><a id="IE8" href="#">Internet Explorer 8</a></li>
+                    <li><input type="checkbox" id="bIE7" /><label for="bIE7"></label><a id="IE7" href="#">Internet Explorer 7</a></li>
+                    <li><input type="checkbox" id="bIE6" /><label for="bIE6"></label><a id="IE6" href="#">Internet Explorer 6</a></li>
+                    <li><input type="checkbox" id="bChromeWin" /><label for="bChromeWin"></label><a id="ChromeWin" href="#">Chrome on Windows</a></li>
+                    <li><input type="checkbox" id="bChromeMac" /><label for="bChromeMac"></label><a id="ChromeMac" href="#">Chrome on Mac</a></li>
+                    <li><input type="checkbox" id="bChromeLin" /><label for="bChromeLin"></label><a id="ChromeLin" href="#">Chrome on Linux</a></li>
+                    <li><input type="checkbox" id="bFFWin" /><label for="bFFWin"></label><a id="FFWin" href="#">Firefox on Windows</a></li>
+                    <li><input type="checkbox" id="bFFMac" /><label for="bFFMac"></label><a id="FFMac" href="#">Firefox on Mac</a></li>
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                    <li><input type="checkbox" id="bFFLin" /><label for="bFFLin"></label><a id="FFLin" href="#">Firefox on Linux</a></li>
+                    <li><input type="checkbox" id="bSafariMac" /><label for="bSafariMac"></label><a id="SafariMac" href="#">Safari on Mac</a></li>
+                    <li><input type="checkbox" id="bSafariWin" /><label for="bSafariWin"></label><a id="SafariWin" href="#">Safari on Windows</a></li>
+                    <li><input type="checkbox" id="bSafariLin" /><label for="bSafariLin"></label><a id="SafariLin" href="#">Safari on Linux</a></li>
+                    <li><input type="checkbox" id="bOperaMac" /><label for="bOperaMac"></label><a id="OperaMac" href="#">Opera on Mac</a></li>
+                    <li><input type="checkbox" id="bOperaWin" /><label for="bOperaWin"></label><a id="OperaWin" href="#">Opera on Windows</a></li>
+                    <li><input type="checkbox" id="bOperaLin" /><label for="bOperaLin"></label><a id="OperaLin" href="#">Opera on Linux</a></li>
+                    <li><input type="checkbox" id="biPhone" /><label for="biPhone"></label><a id="iPhone" href="#">iPhone</a></li>
+                    <li><input type="checkbox" id="biPad" /><label for="biPad"></label><a id="iPad" href="#">iPad</a></li>
+                    </ul>
+                </td>
+            </tr>
+        </table>
+        <div class="subheader">
+            <input type="checkbox" id="custom-types" /><label for="custom-types"></label><span data-resource="CustomTypesEnable">While having automatically update show User-Agent of checked browsers</span>
+        </div>
+    </div>
+    
+    <div id="custom-useragent-content" class="downed custom-value openCloseObj">
+        <div class="set-ua-legend">
+            <span data-resource="ViewListOfPopularUA">You can see the list of the most popular</span> <a target="_blank" href="http://www.useragentstring.com/pages/Browserlist/" data-resource="ViewHERE">here</a>:<br />
+        </div>
+        <input name="ua" id="ua" maxlength="170" /><button id="customButton" data-resource="CustomButtonText">Set</button>
+    </div>
+    
+    <script src="3rd/jquery/min.js"></script>
+    <script src="popup.js"></script>
+</body>
+</html>

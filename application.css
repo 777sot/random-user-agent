@@ -1,0 +1,281 @@
+html, body {
+    height: 200px;
+}
+body {
+    font-family: Arial;
+    background: #fff/*#3c3f42*/;
+    color: #444;
+    margin: 0;
+    padding: 0;
+    cursor: default;
+}
+body > * {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+    text-shadow: 0px 1px 2px rgba(0, 2, 2, 0.3);
+    -webkit-user-select: none;
+}
+
+input:focus, select:focus, textarea:focus{ 
+    outline: 0;
+}
+
+input[type=checkbox] {
+    display:none;
+}
+
+    input[type=checkbox] + label,
+    input[type=checkbox]:checked + label {
+        background-image: url('img/checkbox.png');
+        background-repeat: no-repeat;
+        height: 16px;
+        width: 16px;
+        display:inline-block;
+        padding: 0;
+        cursor: pointer;
+        
+        margin-right: 6px;
+        position: relative;
+        top: +3px;
+        
+        -webkit-transition: all 0.1s ease-out;
+        -moz-transition: all 0.1s ease-out;
+        transition: all 0.1s ease-out;
+    }
+
+
+    input[type=checkbox] + label {
+        background-position: top center;
+    }
+        input[type=checkbox]:checked + label {
+            background-position: bottom center;
+        }
+        
+        
+        li input[type=checkbox] + label,
+        li input[type=checkbox]:checked + label {
+            background-image: url('img/checkbox-small.png');
+            height: 12px;
+            width: 12px;      
+            margin-right: 4px;
+            top: +2px;
+        }
+    
+    
+        li input[type=checkbox] + label {
+            background-position: top center;
+        }
+            li input[type=checkbox]:checked + label {
+                background-position: bottom center;
+            }
+    select {
+        background-color: #fff;
+        color: #555;
+        border: none;
+        font-weight: bold;
+        font-size: 140%;
+    }
+
+h1, h2, h3, h4, h5 {
+    color: #3c3f42;
+    margin: 10px 0;
+    padding: 0;
+}
+h1 {
+    margin: 0;
+    padding: 0;
+    font-size: 22px;
+    font-weight:normal;
+    font-family: arial;
+}
+    h1.header {
+        margin: 15px 0;
+    }
+    h1 sup {
+        font-size: 9px;
+    }
+        h1 sup a {
+            text-decoration: none;
+            color: #333;
+            opacity: 0.2;
+            transition: 0.2s ease;
+        }
+        h1 sup a:hover {
+            opacity: 1;
+        }
+    
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+    h2 span {
+        font-size: 14px;
+        padding: 8px 15px;
+        margin: 0 6px;
+        color: #fff;
+        cursor: pointer;
+        background-color: #29abe2;
+        border-radius: 10px;
+        
+        transition: background-color 0.2s ease;
+    }
+        h2 span:hover {
+            background-color: #077ac1;
+        }
+    
+div.subheader {
+    font-size: 12px;
+    font-weight: normal;
+    color: #222;
+    padding: 12px 0;
+    text-align: center;
+}
+    div.subheader.last {
+        padding-bottom: 20px;
+    }
+
+div.user-agent {
+    display: table;
+    padding: 10px 0 !important;
+    margin: 0;
+    color: #077ac1;
+    
+    position: relative;
+    
+    font-family: sans-serif;
+    overflow: scroll !important;
+    height: 80px !important;
+    width: 100%;
+    
+    -webkit-user-select: text;
+}
+    #user-agent-now {
+        vertical-align: middle;
+        display: table-cell;
+        width: 100% !important;
+        text-align: center;
+        text-shadow: 0px 1px 2px rgba(255, 255, 255, 0.7);
+    }
+        #change-ua-now, #reset-ua-now {
+            position: absolute;
+            left:50%;
+            width: 100px;
+            margin-left: -55px;
+            border-radius: 10px;
+            text-align: center;
+            font-size: 9px;
+            color: #077ac1;
+            background-color: #fff;
+            transition: 0.2s ease;
+            cursor: pointer;
+            -webkit-user-select: none;
+        }
+        #change-ua-now {
+            margin-top: -15px;
+            padding: 5px 5px 5px 5px;
+        }
+            #change-ua-now:hover {
+                margin-top: -13px;
+                color: #333;
+                box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.2);
+            }
+        #reset-ua-now {
+            bottom: 0;
+            margin-bottom: -5px;
+            padding: 5px 5px 5px 5px;
+        }
+            #reset-ua-now:hover {
+                margin-bottom: -3px;
+                color: #333;
+                box-shadow: 0px -1px 2px 0px rgba(0, 0, 0, 0.2);
+            }
+        
+    
+
+.downed {
+    background: #ededed;
+    padding: 10px 0;
+    /*border-style: solid;
+    border-width: 1px 0 1px 0;
+    border-top-color: #eaebeb;
+    border-bottom-color: #ededee;*/
+}
+
+.openCloseObj {
+    display: none;
+}
+
+table {
+    width: 100%;
+}
+    table tr td {
+        width: 49.999999999%;
+        vertical-align: top;
+    }
+    table tr td ul {
+        list-style: none;
+        color: #909091;
+        padding: 0;
+        margin: 0;
+    }
+    table tr td ul li {
+        padding: 0;
+        margin: 0;
+    }
+    table tr td ul li a {
+        color: #333;
+        text-decoration: none;
+    }
+        table tr td ul li a:hover {
+            color: #077ac1;
+        }
+
+h2 {
+  font-size: 16px;
+  font-weight:normal;
+  font-family: arial;
+}
+
+h3 {
+  font-size: 14px;
+  font-weight:normal;
+  font-family: arial;}
+
+.custom-value {
+    font-size: 12px;
+    padding: 4px 0 7px 0;
+}
+    .custom-value a {
+        color: #28a9e1;
+        cursor: help;
+    }
+    .set-ua-legend {
+        padding: 5px 0 5px 0;
+    }
+    #ua {
+        width: 75% !important;
+        background-color: #fff;
+        border: 1px solid #707879;
+        border-radius: 1px;
+        color: #333;
+        padding: 4px 0 4px 7px;
+    }
+    #customButton {
+        width: 24.5%;
+        margin: 0 0 0 0.49%;
+        background-color: #077ac1;
+        border: 1px solid #707879;
+        border-radius: 1px;
+        color: #eee;
+        padding: 4px 0;
+        position: relative;
+    }
+        #customButton:hover {
+            color: #fff;
+        }
+        #customButton:active {
+            top: +1px;
+        }
+td {
+    font-size:12px;
+}

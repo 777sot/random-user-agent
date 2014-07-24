@@ -1,0 +1,41 @@
+{
+  "appName": {
+    "message": "Random (Hide) User-Agent"
+  },
+  "appDesc": {
+    "message": "Автоматически заменяет User-Agent через заданный интервал времени на случайный, тем самым скрывая настоящий"
+  },
+  "CheckActualUALink": {
+    "message": "проверить"
+  },
+  "ChangeUANow": {
+    "message": "Обновить"
+  },
+  "ResetUANow": {
+    "message": "Сбросить"
+  },
+  "AutoChangeEvery": {
+    "message": "Обновлять каждые"
+  },
+  "NMinutes": {
+    "message": "минут"
+  },
+  "SettingsLink": {
+    "message": "Настройки"
+  },
+  "CustomValueLink": {
+    "message": "Указать свой"
+  },
+  "CustomTypesEnable": {
+    "message": "При автоматическом обновлении указывать User-Agent браузеров отмеченных галочками"
+  },
+  "ViewListOfPopularUA": {
+    "message": "Ознакомиться со списком наиболее популярных можно"
+  },
+  "ViewHERE": {
+    "message": "здесь"
+  },
+  "CustomButtonText": {
+    "message": "Изменить"
+  }
+}

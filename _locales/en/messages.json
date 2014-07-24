@@ -1,0 +1,41 @@
+{
+  "appName": {
+    "message": "Random (Hide) User-Agent"
+  },
+  "appDesc": {
+    "message": "Automatically change User-agent in given time-interval to random, by this hides its current"
+  },
+  "CheckActualUALink": {
+    "message": "check"
+  },
+  "ChangeUANow": {
+    "message": "Update"
+  },
+  "ResetUANow": {
+    "message": "Reset"
+  },
+  "AutoChangeEvery": {
+    "message": "Update every"
+  },
+  "NMinutes": {
+    "message": "minutes"
+  },
+  "SettingsLink": {
+    "message": "Settings"
+  },
+  "CustomValueLink": {
+    "message": "Custom value"
+  },
+  "CustomTypesEnable": {
+    "message": "While having automatically update show User-Agent of checked browsers"
+  },
+  "ViewListOfPopularUA": {
+    "message": "You can see the list of the most popular"
+  },
+  "ViewHERE": {
+    "message": "here"
+  },
+  "CustomButtonText": {
+    "message": "Set"
+  }
+}
