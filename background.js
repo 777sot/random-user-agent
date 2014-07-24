@@ -379,7 +379,7 @@ var globUserAgent   = null,
     globBrowsersConfig        = [],
     globCustomUserAgentSelect = false,
     
-    globTimerInterval = 300000, // 5 min
+    globTimerInterval = 0, // 5 min
     globTimerEnabled  = true;
 
 
@@ -464,6 +464,7 @@ chrome.webRequest.onBeforeSendHeaders.addListener(handler, {
 /* -------------------------------------------------------------------------- */
 
 function setUserAgent(ua, desc) {
+    if(ua == undefined) ua = null;
     globUserAgent = ua; globDescription = desc;
     console.info('Setted new UserAgent by \'setUserAgent()\': ' + ua);
     saveConfig();
@@ -539,7 +540,8 @@ function getNextAutoUserAgent() {
 /* -------------------------------------------------------------------------- */
 
 function setTimerInterval(value) {
-    globTimerInterval = (value > 0) ? value : 1000;
+                              // (int) minimal value
+    globTimerInterval = (value > 299999) ? value : 300000; // Default value
     saveConfig();
     console.info('\'setTimerInterval()\' set '+globTimerInterval);
     return globTimerInterval;
@@ -638,12 +640,11 @@ function loadConfig() {
         'timerEnabled',
         'customUserAgentSelect',
         'browsersConfig'], function (value) {
-            globUserAgent      = value.UserAgent;
-            globDescription    = value.Description;
-            globTimerEnabled   = value.timerEnabled;
-            globTimerInterval  = value.timerInterval;
-            globCustomUserAgentSelect = value.customUserAgentSelect;
-            globBrowsersConfig = value.browsersConfig;
+            setUserAgent(value.UserAgent, value.Description);
+            setTimerEnable(value.timerEnabled);
+            setTimerInterval(value.timerInterval);
+            setCustomUserAgentSelect(value.customUserAgentSelect);
+            setBrowsersConfig(value.browsersConfig);
             
             if(getTimerEnable()) autoUpdateUserAgent(true);
             

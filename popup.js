@@ -151,9 +151,8 @@ $(document).ready(function(){
 
 
     /* --- Load values ------------------------------------------------------ */
-    
     // Set random User-Agent in custom UA text field
-    $('#ua').val(bg().getUserAgent());
+    $('#ua').val();
     
     // Load Auto Change value
     $(autoChangeChkBox).prop('checked', bg().getTimerEnable());
@@ -166,14 +165,14 @@ $(document).ready(function(){
 
     // Load checkboxes state
     var data = bg().getBrowsersConfig();
-    $.each(data, function() {
+    if(data.length)$.each(data, function() {
         var el = getInputElementByLinkID(this.ID);
         if(el.length)
             el.prop('checked', this.state)
         else
             console.warn('Cannot find saved element "' + this.ID + '"');
     });
-        
+
     
 
 

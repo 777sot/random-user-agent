@@ -18,6 +18,7 @@ User-Agent - это строка, которая передается брауз
 История изменений
 ----
 
+* **1.3** - Добавлена немецкая (de) локализация, исправлены баги инициализации при отсутствующих настройках, обновлена функция загрузки настроек, мелкие доработки
 * **1.2** - Первый релиз на гитхабе
 
 [Google Webstore]:https://chrome.google.com/webstore/detail/random-hide-user-agent/einpaelgookohagofgnnkcfjbkkgepnp
