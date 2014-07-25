@@ -3,7 +3,7 @@
     "message": "Random (Hide) User-Agent"
   },
   "appDesc": {
-    "message": "Automatically change User-agent in given time-interval to random, by this hides its current"
+    "message": "Automatically replaces User-Agent through the specified time interval to a random, thus hiding the real one"
   },
   "CheckActualUALink": {
     "message": "check"
@@ -27,7 +27,7 @@
     "message": "Custom value"
   },
   "CustomTypesEnable": {
-    "message": "While having automatically update show User-Agent of checked browsers"
+    "message": "While updating automatically specify User Agent browsers with checkmarks"
   },
   "ViewListOfPopularUA": {
     "message": "You can see the list of the most popular"

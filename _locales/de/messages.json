@@ -3,10 +3,10 @@
     "message": "Random (Hide) User-Agent"
   },
   "appDesc": {
-    "message": "Automatically change User-agent in given time-interval to random, by this hides its current"
+    "message": "User-Agent wird automatisch nach eingegebenen Zeitabstand ersetzt, dadurch wird der tatsachlichen verborgen"
   },
   "CheckActualUALink": {
-    "message": "uberprufen"
+    "message": "Uberprufen"
   },
   "ChangeUANow": {
     "message": "Aktualisieren"
@@ -18,24 +18,24 @@
     "message": "Aktualisieren jeden"
   },
   "NMinutes": {
-    "message": "minute"
+    "message": "minuten"
   },
   "SettingsLink": {
     "message": "Einstellungen"
   },
   "CustomValueLink": {
-    "message": "Brauch"
+    "message": "Eingeben"
   },
   "CustomTypesEnable": {
-    "message": "While having automatically update show User-Agent of checked browsers"
+    "message": "Bei der automatische Aktualisierung User-Agent der abgehackten Browsers eingeben"
   },
   "ViewListOfPopularUA": {
-    "message": "You can see the list of the most popular"
+    "message": "Die Liste der meist genutzten ist "
   },
   "ViewHERE": {
     "message": "hier"
   },
   "CustomButtonText": {
-    "message": "Set"
+    "message": "Einst."
   }
 }

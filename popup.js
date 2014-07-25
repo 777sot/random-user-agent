@@ -43,7 +43,8 @@ $(document).ready(function(){
     
     // Show User-Agent text on label
     function setUserAgentLabel(text){
-        return $('#user-agent-now').text(text);
+        if($('#user-agent-now').text() !== text) $('#user-agent-now').text(text);
+        return;
     }
     
     // Set auto refresh timer interval
@@ -66,9 +67,6 @@ $(document).ready(function(){
     function refreshUserAgentLabel(){
         setUserAgentLabel(bg().getUserAgent());
     }
-
-
-
 
 
 

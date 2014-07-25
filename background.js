@@ -222,6 +222,7 @@ function getGlobalRndUserAgent() {
 
 
 
+
 // Hook for replace header
 handler = function (details) {
     if (globUserAgent == null) {
@@ -242,6 +243,8 @@ handler = function (details) {
 chrome.webRequest.onBeforeSendHeaders.addListener(handler, {
     urls: ["<all_urls>"]
 }, ["blocking", "requestHeaders"]);
+
+
 
 
 
