@@ -1,20 +1,19 @@
+/*
+// Random User-Agent
+// Automatically change User-agent in given time-interval to random.
+//
+// Copyright (C) 2014 by Samoylov Nikolay <samoylovnn@gmail.com>
+// MIT License
+// http://github.com/tarampampam/random-user-agent/raw/master/LICENSE
+*/
+
 $(document).ready(function(){
     function bg(){return chrome.extension.getBackgroundPage()}
     
-    var        userAgents = getUserAgents(),
+    var        userAgents = bg().getUserAgents(),
          autoChangeChkBox = '#autochange',
            autoChangeName = '#change-timer',
         customTypesChkBox = '#custom-types';
-    
-    // Return object of all User-Agent
-    function getUserAgents(){
-        return bg().getUserAgents();
-    }
-    
-    // Return random value of User-Agent
-    function getRndUserAgent(obj){
-        return bg().getRndUserAgent(obj);
-    }
     
     // Return <input> element by <a> tag id
     function getInputElementByLinkID(link){
@@ -23,26 +22,23 @@ $(document).ready(function(){
     
     // Save checkboxes position
     function saveBrowsersConfig(){
-        var data = [];
-        $.each(userAgents, function() {
-            var el = getInputElementByLinkID(this.ID);
-            if(el.length)
+        var data        = [], 
+            browsersIDs = Object.keys(userAgents);
+        for(var i = 0; i < browsersIDs.length; i++){
+            var el = getInputElementByLinkID(browsersIDs[i]);
+            if(el.length) {
+                var browserData = userAgents[browsersIDs[i]];
                 data.push({
-                    "ID": this.ID,
-                    "name": this.name,
+                    "ID": browsersIDs[i],
+                    "name": browserData.name,
                     "state": el.prop('checked')
                 });
-            else
+            } else
                 console.warn('Cannot find <input> element before <a>');
-        });
+        }
         if(data.length) {
             bg().setBrowsersConfig(data);
         }
-    }
-    
-    // Return actual User-Agent
-    function getUserAgent(){
-        return bg().getUserAgent();
     }
     
     // Show User-Agent text on label
@@ -57,8 +53,8 @@ $(document).ready(function(){
     }
     
     // Set User-Agent
-    function setUA(ua, desc){
-        bg().setUserAgent(ua, desc);
+    function setUA(ua){
+        bg().setUserAgent(ua);
         refreshUserAgentLabel();
     }
     
@@ -68,7 +64,7 @@ $(document).ready(function(){
     }
     
     function refreshUserAgentLabel(){
-        setUserAgentLabel(getUserAgent());
+        setUserAgentLabel(bg().getUserAgent());
     }
 
 
@@ -99,7 +95,7 @@ $(document).ready(function(){
             $(autoChangeChkBox).click();
     });
     
-    // On check autochange - enable timer and set timer interval
+    // Autochange - enable timer and set timer interval
     $(autoChangeChkBox).on('click', function(){
         setTimerInterval();
         bg().setTimerEnable($(autoChangeChkBox).prop('checked'));
@@ -118,28 +114,36 @@ $(document).ready(function(){
 
 
     // Attach events to links for 'quick set' User-Agent -----------------------
-    $.each(userAgents, function() {
-        // OnClick <a> event
-        function userAgentLink(userAgentsList, Description){
-            setUA(getRndUserAgent(userAgentsList), Description);
-        }
-        function userAgentCheckbox(){
-            saveBrowsersConfig();
-        }
-        $('#'+this.ID)
-            .click(userAgentLink.bind(this, this, this.name))
-            .text(this.name); // Appent text from description
-        getInputElementByLinkID(this.ID)
+    // OnClick <a> event
+    function userAgentLinkClick(userAgentsList){
+        setUA(bg().getRndUserAgent(userAgentsList));
+    }
+    function userAgentCheckbox(){
+        saveBrowsersConfig();
+    }
+    var browsersIDs = Object.keys(userAgents);
+    for(var i = 0; i < browsersIDs.length; i++){
+        var browserID = browsersIDs[i],
+            browserData = userAgents[browsersIDs[i]],
+            userAgentLink = $('#'+browserID);
+        
+        userAgentLink                  // (handle) (1st param) (2nd param)
+            .click(userAgentLinkClick.bind(this, browserData))
+            .text(browserData.name); // Appent text from description
+        
+        getInputElementByLinkID(browserID)
             .click(userAgentCheckbox.bind(this));
-    });
-    
+    }
+
+
+
     // Use custom types of browsers to generate random value
     $(customTypesChkBox).on('click', function(){
         bg().setCustomUserAgentSelect($(this).prop('checked'));
     });
-    
-    
-    
+
+
+
     // 'Change' (set custom UA) button click
     $('#customButton').on('click', function(){
         if($(autoChangeChkBox).prop('checked'))
@@ -152,8 +156,7 @@ $(document).ready(function(){
 
     /* --- Load values ------------------------------------------------------ */
     // Set random User-Agent in custom UA text field
-    $('#ua').val();
-    
+    $('#ua').val(bg().getUserAgent());
     // Load Auto Change value
     $(autoChangeChkBox).prop('checked', bg().getTimerEnable());
     
@@ -165,7 +168,7 @@ $(document).ready(function(){
 
     // Load checkboxes state
     var data = bg().getBrowsersConfig();
-    if(data.length)$.each(data, function() {
+    if(!(data === undefined) && data.length)$.each(data, function() {
         var el = getInputElementByLinkID(this.ID);
         if(el.length)
             el.prop('checked', this.state)
@@ -180,7 +183,7 @@ $(document).ready(function(){
     /* --- etc. ------------------------------------------------------------- */
 
     // Load locale
-    // http://codethug.com/2013/02/08/clean-markup-with-chrome-extension-i18n/
+    // http://goo.gl/2fxSJX
     $('[data-resource]').each(function() {
         var el = $(this);
         var resourceName = el.data('resource');

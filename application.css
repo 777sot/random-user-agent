@@ -1,9 +1,18 @@
+/*
+// Random User-Agent
+// Automatically change User-agent in given time-interval to random.
+//
+// Copyright (C) 2014 by Samoylov Nikolay <samoylovnn@gmail.com>
+// MIT License
+// http://github.com/tarampampam/random-user-agent/raw/master/LICENSE
+*/
+
 html, body {
     height: 200px;
 }
 body {
     font-family: Arial;
-    background: #fff/*#3c3f42*/;
+    background: #fff;
     color: #444;
     margin: 0;
     padding: 0;
