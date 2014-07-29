@@ -26,6 +26,20 @@
   "CustomValueLink": {
     "message": "Указать свой"
   },
+  
+  "ExceptionsLink": {
+    "message": "Исключения"
+  },
+  "ExceptionsDescText": {
+    "message": "Для указанных ниже сайтов User-Agent подменяться не будет (по одному на строку):"
+  },
+  "ExceptionsSaveButtonText": {
+    "message": "Сохранить"
+  },
+  "ExceptionsSaveButtonTextOk": {
+    "message": "Сохранено"
+  },
+  
   "CustomTypesEnable": {
     "message": "При автоматическом обновлении указывать User-Agent браузеров отмеченных галочками"
   },

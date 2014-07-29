@@ -4,7 +4,7 @@
   "short_name":"random-user-agent",
   "description":"__MSG_appDesc__",
   "default_locale":"en",
-  "version":"1.4.1",
+  "version":"1.5",
   "icons":{  
     "16":"img/16x16.png",
     "48":"img/48x48.png",
@@ -16,17 +16,7 @@
     "default_popup":"popup.html",
     "default_title":"__MSG_appName__"
   },
-  "content_scripts":[  
-    {  
-      "all_frames":true,
-      "js":["content.js"],
-      "matches":[  
-        "http://*/*",
-        "https://*/*"
-      ],
-      "run_at":"document_end"
-    }
-  ],
+
   "background":{  
     "scripts":["3rd/randexp/min.js", "background.js"]
   },

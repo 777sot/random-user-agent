@@ -142,7 +142,7 @@ function setExtensionIcon(state){ // main update icon function is getTimerEnable
           break;
     }
     chrome.browserAction.setIcon({path: imageName}, function(){});
-    return null;
+    return;
 }
 
 /* -------------------------------------------------------------------------- */
@@ -164,14 +164,20 @@ console.info = function(data) {
 
 var globUserAgent   = null,
     
-    globBrowsersConfig        = [],
+    globBrowsersConfig        = [
+        {ID: "ChromeWin", state: true},
+        {ID: "ChromeMac", state: true},
+        {ID: "ChromeLin", state: true}
+    ],
     globCustomUserAgentSelect = true,
     
-    globTimerInterval = 300000, // 5 min
-    globTimerEnabled  = false,
+    globTimerInterval = 900000, // 15 min
+    globTimerEnabled  = true,
     globTimerHandler  = null,
     
-    globUseGlobalStorage = true; // true = global, false = local
+    globExceptionsList = ['chrome.google.com/webstore/'],
+    
+    globUseGlobalStorage = true; // true = global, false = local // TODO: Change to 'true' before release
 
 
 function getUserAgents(){
@@ -214,37 +220,6 @@ function getGlobalRndUserAgent() {
         return getGlobalRndUserAgent();
     return rndUserAgent; // string
 }
-
-// Main hook
-/* -------------------------------------------------------------------------- */
-
-
-
-
-
-
-// Hook for replace header
-handler = function (details) {
-    if (globUserAgent == null) {
-        return;
-    }
-    for (var i = 0, l = details.requestHeaders.length; i < l; ++i) {
-        if (details.requestHeaders[i].name === 'User-Agent') {
-            details.requestHeaders[i].value = globUserAgent;
-            break;
-        }
-    }
-    return {
-        requestHeaders: details.requestHeaders
-    };
-};
-
-// Init hook
-chrome.webRequest.onBeforeSendHeaders.addListener(handler, {
-    urls: ["<all_urls>"]
-}, ["blocking", "requestHeaders"]);
-
-
 
 
 
@@ -395,6 +370,52 @@ function setCustomUserAgentSelect(value) {
 
 
 
+// Exceptions config
+/* -------------------------------------------------------------------------- */
+
+function getExceptionsList(type) {
+    if((typeof type == 'string') && (type == 'text')){
+        return globExceptionsList.join("\n");
+    }
+    return globExceptionsList;
+}
+
+function setExceptionsList(data) {
+    var result = false;
+    function validateNewValue(value) {
+        return ((typeof value == 'string') && (value.length > 3)) ? true : false;
+    }
+    if(data.isArray) {
+        var outArray = [];
+
+        // Make check all items
+        for (i = 0; i < data.length; ++i) 
+            if(validateNewValue(data[i]))
+                outArray.push(data[i]);
+
+        globExceptionsList = outArray;
+        result = true;
+    } else if(typeof data == 'string'){
+        var inArray = data.split("\n"),
+            outArray = [];
+
+        // Make check all items
+        for (i = 0; i < data.length; ++i) 
+            if(validateNewValue(inArray[i]))
+                outArray.push(inArray[i]);
+
+        globExceptionsList = outArray;
+        result = true;
+    }
+    
+    console.info('Exceptions list updated ('+globExceptionsList.join(", ")+')');
+    saveConfig();
+    return result;
+}
+
+
+
+
 // Save and load config
 /* -------------------------------------------------------------------------- */
 
@@ -408,7 +429,8 @@ function saveConfig() {
             'timerInterval':         getTimerInterval(),
             'timerEnabled':          getTimerEnable(),
             'customUserAgentSelect': getCustomUserAgentSelect(),
-            'browsersConfig':        getBrowsersConfig()
+            'browsersConfig':        getBrowsersConfig(),
+            'exceptionsList':        getExceptionsList()
         }, function(result) {
             console.info('Settings saved');
             return true;
@@ -424,13 +446,15 @@ function loadConfig() {
         'timerInterval', 
         'timerEnabled',
         'customUserAgentSelect',
-        'browsersConfig'], function (value) {
+        'browsersConfig',
+        'exceptionsList'], function (value) {
             // If value not stored (loaded as 'undefined') - setup default (or setted in past) value
             globUserAgent             = (typeof(globUserAgent)             == "undefined") ? value.UserAgent             : globUserAgent;
             globTimerEnabled          = (typeof(globTimerEnabled)          == "undefined") ? value.timerEnabled          : globTimerEnabled;
             globTimerInterval         = (typeof(globTimerInterval)         == "undefined") ? value.timerInterval         : globTimerInterval;
             globCustomUserAgentSelect = (typeof(globCustomUserAgentSelect) == "undefined") ? value.customUserAgentSelect : globCustomUserAgentSelect;
             globBrowsersConfig        = (typeof(globBrowsersConfig)        == "undefined") ? value.browsersConfig        : globBrowsersConfig;
+            globExceptionsList        = (typeof(globExceptionsList)        == "undefined") ? value.exceptionsList        : globExceptionsList;
 
             if(getTimerEnable()) autoUpdateUserAgent(true);
             
@@ -440,5 +464,34 @@ function loadConfig() {
     });
 }
 
-
 loadConfig();
+
+
+
+
+// Main hook
+/* -------------------------------------------------------------------------- */
+
+// Hook for replace header
+chrome.webRequest.onBeforeSendHeaders.addListener(function(details) {
+    if (globUserAgent == null)
+        return;
+
+    //console.log('Request url ' + details.url); // TODO: Hide console output
+    for(var i = 0; i < globExceptionsList.length; ++i)
+        if(details.url.indexOf(globExceptionsList[i]) > -1) {
+            //console.log('Ignore url '+details.url); // TODO: Hide console output
+            return;
+        }
+
+    for (var i = 0, l = details.requestHeaders.length; i < l; ++i) {
+        if (details.requestHeaders[i].name === 'User-Agent') {
+            details.requestHeaders[i].value = globUserAgent;
+            break;
+        }
+    }
+    return {
+        requestHeaders: details.requestHeaders
+    };
+}, {urls: ["<all_urls>"]}, ["blocking", "requestHeaders"]);
+

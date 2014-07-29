@@ -26,6 +26,20 @@
   "CustomValueLink": {
     "message": "Eingeben"
   },
+  
+  "ExceptionsLink": {
+    "message": "Ausnahmen"
+  },
+  "ExceptionsDescText": {
+    "message": "Um Anderungs User-Agent fur einige Websites deaktivieren, konnen Sie URLs hier schreiben (1 url pro Zeile):"
+  },
+  "ExceptionsSaveButtonText": {
+    "message": "Sparen"
+  },
+  "ExceptionsSaveButtonTextOk": {
+    "message": "Ok"
+  },
+  
   "CustomTypesEnable": {
     "message": "Bei der automatische Aktualisierung User-Agent der abgehackten Browsers eingeben"
   },

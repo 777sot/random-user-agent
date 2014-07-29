@@ -31,6 +31,7 @@
     <h2 id="subpanel">
         <span id="clients-all" class="openClose" data-resource="SettingsLink">Settings</span>
         <span id="custom-useragent" class="openClose" data-resource="CustomValueLink">Custom value</span>
+        <span id="exceptions" class="openClose" data-resource="ExceptionsLink">Exceptions</span>
     </h2>
     
     <div id="clients-all-content" class="downed openCloseObj">
@@ -74,7 +75,15 @@
         <div class="set-ua-legend">
             <span data-resource="ViewListOfPopularUA">You can see the list of the most popular</span> <a target="_blank" href="http://www.useragentstring.com/pages/Browserlist/" data-resource="ViewHERE">here</a>:<br />
         </div>
-        <input name="ua" id="ua" maxlength="170" /><button id="customButton" data-resource="CustomButtonText">Set</button>
+        <input name="ua" id="ua" maxlength="170" /><button id="customButton" class="setButton" data-resource="CustomButtonText">Set</button>
+    </div>
+    
+    <div id="exceptions-content" class="downed custom-value openCloseObj">
+        <p data-resource="ExceptionsDescText">To disable change User-Agent for some sites, you can write urls here (1 url per line):</p>
+        <textarea id="exceptions-text" rows="4"></textarea>
+        <div class="exceptions-more">
+            <button id="exceptions-save" class="setButton" data-resource="ExceptionsSaveButtonText">Save</button>
+        </div>
     </div>
     
     <script src="3rd/jquery/min.js"></script>

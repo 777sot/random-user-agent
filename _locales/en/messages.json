@@ -26,6 +26,20 @@
   "CustomValueLink": {
     "message": "Custom value"
   },
+  
+  "ExceptionsLink": {
+    "message": "Exceptions"
+  },
+  "ExceptionsDescText": {
+    "message": "To disable change User-Agent for some sites, you can write urls here (1 url per line):"
+  },
+  "ExceptionsSaveButtonText": {
+    "message": "Save"
+  },
+  "ExceptionsSaveButtonTextOk": {
+    "message": "Saved"
+  },
+  
   "CustomTypesEnable": {
     "message": "While updating automatically specify User Agent browsers with checkmarks"
   },

@@ -11,9 +11,11 @@ $(document).ready(function(){
     function bg(){return chrome.extension.getBackgroundPage()}
     
     var        userAgents = bg().getUserAgents(),
-         autoChangeChkBox = '#autochange',
-           autoChangeName = '#change-timer',
-        customTypesChkBox = '#custom-types';
+         autoChangeChkBox = $('#autochange'),
+           autoChangeName = $('#change-timer'),
+        customTypesChkBox = $('#custom-types'),
+           exceptionsList = $('#exceptions-text'),
+           exceptionsSave = $('#exceptions-save');
     
     // Return <input> element by <a> tag id
     function getInputElementByLinkID(link){
@@ -49,7 +51,7 @@ $(document).ready(function(){
     
     // Set auto refresh timer interval
     function setTimerInterval(){
-        var autoChangeInt = $(autoChangeName).val();
+        var autoChangeInt = autoChangeName.val();
         bg().setTimerInterval(autoChangeInt * 60000);
     }
     
@@ -87,16 +89,16 @@ $(document).ready(function(){
     });
     
     // On change timer interval (dropdown) - set interval and enable autochange
-    $(autoChangeName).on('change', function(){
+    autoChangeName.on('change', function(){
         setTimerInterval();
-        if(!$(autoChangeChkBox).prop('checked'))
-            $(autoChangeChkBox).click();
+        if(!autoChangeChkBox.prop('checked'))
+            autoChangeChkBox.click();
     });
     
     // Autochange - enable timer and set timer interval
-    $(autoChangeChkBox).on('click', function(){
+    autoChangeChkBox.on('click', function(){
         setTimerInterval();
-        bg().setTimerEnable($(autoChangeChkBox).prop('checked'));
+        bg().setTimerEnable(autoChangeChkBox.prop('checked'));
     });
     
     // 'Reset' button click
@@ -109,7 +111,18 @@ $(document).ready(function(){
         setUA(bg().getNextAutoUserAgent());
     });
 
-
+    exceptionsSave.on('click', function(){
+        var oldBtnText = exceptionsSave.text();
+        
+        bg().setExceptionsList(exceptionsList.val());
+        
+        exceptionsSave.text(chrome.i18n.getMessage('ExceptionsSaveButtonTextOk')).attr('disabled', true);
+        exceptionsList.val(bg().getExceptionsList('text'));
+        
+        setTimeout(function(){ 
+            exceptionsSave.text(oldBtnText).attr('disabled', false);
+        }, 2000);
+    });
 
     // Attach events to links for 'quick set' User-Agent -----------------------
     // OnClick <a> event
@@ -136,7 +149,7 @@ $(document).ready(function(){
 
 
     // Use custom types of browsers to generate random value
-    $(customTypesChkBox).on('click', function(){
+    customTypesChkBox.on('click', function(){
         bg().setCustomUserAgentSelect($(this).prop('checked'));
     });
 
@@ -144,8 +157,8 @@ $(document).ready(function(){
 
     // 'Change' (set custom UA) button click
     $('#customButton').on('click', function(){
-        if($(autoChangeChkBox).prop('checked'))
-            $(autoChangeChkBox).click();
+        if(autoChangeChkBox.prop('checked'))
+            autoChangeChkBox.click();
         setUA($('#ua').val(), null);
     });
 
@@ -156,13 +169,13 @@ $(document).ready(function(){
     // Set random User-Agent in custom UA text field
     $('#ua').val(bg().getUserAgent());
     // Load Auto Change value
-    $(autoChangeChkBox).prop('checked', bg().getTimerEnable());
+    autoChangeChkBox.prop('checked', bg().getTimerEnable());
     
     // Load Use custom types of browsers value
-    $(customTypesChkBox).prop('checked', bg().getCustomUserAgentSelect());
+    customTypesChkBox.prop('checked', bg().getCustomUserAgentSelect());
     
     // Load autoupdate timer interval value
-    $(autoChangeName).val(bg().getTimerInterval() / 60000);
+    autoChangeName.val(bg().getTimerInterval() / 60000);
 
     // Load checkboxes state
     var data = bg().getBrowsersConfig();
@@ -174,7 +187,8 @@ $(document).ready(function(){
             console.warn('Cannot find saved element "' + this.ID + '"');
     });
 
-    
+    // Load exceptions list to textarea
+    exceptionsList.val(bg().getExceptionsList('text'));
 
 
 
