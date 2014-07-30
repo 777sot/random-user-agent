@@ -449,12 +449,12 @@ function loadConfig() {
         'browsersConfig',
         'exceptionsList'], function (value) {
             // If value not stored (loaded as 'undefined') - setup default (or setted in past) value
-            globUserAgent             = (typeof(globUserAgent)             == "undefined") ? value.UserAgent             : globUserAgent;
-            globTimerEnabled          = (typeof(globTimerEnabled)          == "undefined") ? value.timerEnabled          : globTimerEnabled;
-            globTimerInterval         = (typeof(globTimerInterval)         == "undefined") ? value.timerInterval         : globTimerInterval;
-            globCustomUserAgentSelect = (typeof(globCustomUserAgentSelect) == "undefined") ? value.customUserAgentSelect : globCustomUserAgentSelect;
-            globBrowsersConfig        = (typeof(globBrowsersConfig)        == "undefined") ? value.browsersConfig        : globBrowsersConfig;
-            globExceptionsList        = (typeof(globExceptionsList)        == "undefined") ? value.exceptionsList        : globExceptionsList;
+            globUserAgent             = (typeof(globUserAgent)             !== "undefined") ? value.UserAgent             : globUserAgent;
+            globTimerEnabled          = (typeof(globTimerEnabled)          !== "undefined") ? value.timerEnabled          : globTimerEnabled;
+            globTimerInterval         = (typeof(globTimerInterval)         !== "undefined") ? value.timerInterval         : globTimerInterval;
+            globCustomUserAgentSelect = (typeof(globCustomUserAgentSelect) !== "undefined") ? value.customUserAgentSelect : globCustomUserAgentSelect;
+            globBrowsersConfig        = (typeof(globBrowsersConfig)        !== "undefined") ? value.browsersConfig        : globBrowsersConfig;
+            globExceptionsList        = (typeof(globExceptionsList)        !== "undefined") ? value.exceptionsList        : globExceptionsList;
 
             if(getTimerEnable()) autoUpdateUserAgent(true);
             
