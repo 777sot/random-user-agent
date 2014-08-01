@@ -374,10 +374,22 @@ function setCustomUserAgentSelect(value) {
 /* -------------------------------------------------------------------------- */
 
 function getExceptionsList(type) {
-    if((typeof type == 'string') && (type == 'text')){
-        return globExceptionsList.join("\n");
+    function validateGlobExceptionsList() {
+        if((typeof(globExceptionsList) !== "undefined") && (globExceptionsList.length > 0))
+            return true;
+        return false;
     }
-    return globExceptionsList;
+    
+    if((typeof type == 'string') && (type == 'text')){
+        if(validateGlobExceptionsList())
+            return globExceptionsList.join("\n");
+        else
+            return "";
+    }
+    if(validateGlobExceptionsList())
+        return globExceptionsList;
+    else
+        return [];
 }
 
 function setExceptionsList(data) {
@@ -449,12 +461,12 @@ function loadConfig() {
         'browsersConfig',
         'exceptionsList'], function (value) {
             // If value not stored (loaded as 'undefined') - setup default (or setted in past) value
-            globUserAgent             = (typeof(globUserAgent)             !== "undefined") ? value.UserAgent             : globUserAgent;
-            globTimerEnabled          = (typeof(globTimerEnabled)          !== "undefined") ? value.timerEnabled          : globTimerEnabled;
-            globTimerInterval         = (typeof(globTimerInterval)         !== "undefined") ? value.timerInterval         : globTimerInterval;
-            globCustomUserAgentSelect = (typeof(globCustomUserAgentSelect) !== "undefined") ? value.customUserAgentSelect : globCustomUserAgentSelect;
-            globBrowsersConfig        = (typeof(globBrowsersConfig)        !== "undefined") ? value.browsersConfig        : globBrowsersConfig;
-            globExceptionsList        = (typeof(globExceptionsList)        !== "undefined") ? value.exceptionsList        : globExceptionsList;
+            globUserAgent             = (typeof(value.UserAgent)             !== "undefined") ? value.UserAgent             : globUserAgent;
+            globTimerEnabled          = (typeof(value.timerEnabled)          !== "undefined") ? value.timerEnabled          : globTimerEnabled;
+            globTimerInterval         = (typeof(value.timerInterval)         !== "undefined") ? value.timerInterval         : globTimerInterval;
+            globCustomUserAgentSelect = (typeof(value.customUserAgentSelect) !== "undefined") ? value.customUserAgentSelect : globCustomUserAgentSelect;
+            globBrowsersConfig        = (typeof(value.browsersConfig)        !== "undefined") ? value.browsersConfig        : globBrowsersConfig;
+            globExceptionsList        = (typeof(value.exceptionsList)        !== "undefined") ? value.exceptionsList        : globExceptionsList;
 
             if(getTimerEnable()) autoUpdateUserAgent(true);
             
