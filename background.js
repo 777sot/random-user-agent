@@ -7,20 +7,22 @@
 // http://github.com/tarampampam/random-user-agent/raw/master/LICENSE
 */
 
+//'use strict';
+
 /* REGEXP by randexp/min.js :: http://goo.gl/nvbFrQ */
 /* USERAGENTs lists :: http://goo.gl/WNHq4o , http://goo.gl/1uy4ZG */
- 
+
 var rLocale   = 'en-(US|AU|CA|IN|IE|MT|NZ|PH|SG|ZA|GB|US)',
-    rDotClr   = '( \\.NET CLR [2-3]\\.[1-8]\\.[3-5]07[0-9][0-9]\\;|)';
-    rDotClr12 = '( \\.NET CLR [1-2]\\.[0-1]\\.[4-5]07[0-5][0-9]\\;|)';
-    rMedSrv   = '( Media Center PC [4-6]\\.0\\;|)';
-    rOSwin68  = 'Windows NT [6-8]\\.[0-1]';
-    rOSwin56  = 'Windows NT (5|5|6)\\.[0-1]';
-    rOSmacGnd = 'Intel Mac OS X 10_[6-8]_[2-8]';
-    rOSmacDot = 'Intel Mac OS X 10\\.[5-8]';
-    rOSlinux  = '(NetBSD amd64|Linux amd64|Linux x86_64|Ubuntu\\; Linux|SunOS sun4u)';
-    rChrome3x = 'Chrome\\/3[1-7]\\.0\\.20[0-4][0-9]\\.[1-9][0-9]';
-    rOpera    = 'Opera\\/(9|1[0-2])\\.(([5-6]0|0)|80)';
+    rDotClr   = '( \\.NET CLR [2-3]\\.[1-8]\\.[3-5]07[0-9][0-9]\\;|)',
+    rDotClr12 = '( \\.NET CLR [1-2]\\.[0-1]\\.[4-5]07[0-5][0-9]\\;|)',
+    rMedSrv   = '( Media Center PC [4-6]\\.0\\;|)',
+    rOSwin68  = 'Windows NT [6-8]\\.[0-1]',
+    rOSwin56  = 'Windows NT (5|5|6)\\.[0-1]',
+    rOSmacGnd = 'Intel Mac OS X 10_[6-8]_[2-8]',
+    rOSmacDot = 'Intel Mac OS X 10\\.[5-8]',
+    rOSlinux  = '(NetBSD amd64|Linux amd64|Linux x86_64|Ubuntu\\; Linux|SunOS sun4u)',
+    rChrome3x = 'Chrome\\/3[1-7]\\.0\\.20[0-4][0-9]\\.[1-9][0-9]',
+    rOpera    = 'Opera\\/(9|1[0-2])\\.(([5-6]0|0)|80)',
     
     userAgents = {
         "IE10": {
@@ -307,7 +309,7 @@ function getTimerInterval() {
 }
 
 function setTimerEnable(bool) {
-    oldState = getTimerEnable();
+    var oldState = getTimerEnable();
     globTimerEnabled = (bool) ? bool : false;
     if(!oldState && globTimerEnabled) autoUpdateUserAgent(true);
     saveConfig();
@@ -401,7 +403,7 @@ function setExceptionsList(data) {
         var outArray = [];
 
         // Make check all items
-        for (i = 0; i < data.length; ++i) 
+        for (var i = 0; i < data.length; ++i) 
             if(validateNewValue(data[i]))
                 outArray.push(data[i]);
 
@@ -412,7 +414,7 @@ function setExceptionsList(data) {
             outArray = [];
 
         // Make check all items
-        for (i = 0; i < data.length; ++i) 
+        for (var i = 0; i < data.length; ++i) 
             if(validateNewValue(inArray[i]))
                 outArray.push(inArray[i]);
 

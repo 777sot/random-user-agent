@@ -7,6 +7,8 @@
 // http://github.com/tarampampam/random-user-agent/raw/master/LICENSE
 */
 
+//'use strict';
+
 $(document).ready(function(){
     function bg(){return chrome.extension.getBackgroundPage()}
     

@@ -1,25 +1,25 @@
 {  
-  "manifest_version":2,
-  "name":"__MSG_appName__",
-  "short_name":"random-user-agent",
-  "description":"__MSG_appDesc__",
-  "default_locale":"en",
-  "version":"1.5.2",
-  "icons":{  
-    "16":"img/16x16.png",
-    "48":"img/48x48.png",
-    "128":"img/128x128.png"
+  "manifest_version": 2,
+  "name": "__MSG_appName__",
+  "short_name": "random-user-agent",
+  "description": "__MSG_appDesc__",
+  "default_locale": "en",
+  "version": "1.5.3",
+  "icons": {  
+    "16": "img/16x16.png",
+    "48": "img/48x48.png",
+    "128": "img/128x128.png"
   },
-  "author":"samoylovnn@gmail.com",
-  "browser_action":{
-    "default_icon":"img/48x48.png",
-    "default_popup":"popup.html",
-    "default_title":"__MSG_appName__"
+  "author": "samoylovnn@gmail.com",
+  "browser_action": {
+    "default_icon": "img/48x48.png",
+    "default_popup": "popup.html",
+    "default_title": "__MSG_appName__"
   },
 
-  "background":{  
-    "scripts":["3rd/randexp/min.js", "background.js"]
+  "background": {  
+    "scripts": ["3rd/randexp/min.js", "background.js"]
   },
-  "minimum_chrome_version":"17.0",
-  "permissions":["webRequest", "webRequestBlocking", "\u003Call_urls\u003E", "storage"]
+  "minimum_chrome_version": "17.0",
+  "permissions": ["webRequest", "webRequestBlocking", "\u003Call_urls\u003E", "storage"]
 }
