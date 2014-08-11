@@ -301,6 +301,7 @@ function setTimerInterval(value) {
     globTimerInterval = (value > 299999) ? value : 300000; // Default value
     saveConfig();
     console.info('\'setTimerInterval()\' set '+globTimerInterval);
+    autoUpdateUserAgent(true);
     return globTimerInterval;
 }
 

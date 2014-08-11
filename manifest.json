@@ -4,7 +4,7 @@
   "short_name": "random-user-agent",
   "description": "__MSG_appDesc__",
   "default_locale": "en",
-  "version": "1.5.3",
+  "version": "1.5.4",
   "icons": {  
     "16": "img/16x16.png",
     "48": "img/48x48.png",
