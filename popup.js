@@ -2,7 +2,7 @@
 // Random User-Agent
 // Automatically change User-agent in given time-interval to random.
 //
-// Copyright (C) 2014 by Samoylov Nikolay <samoylovnn@gmail.com>
+// Copyright (C) 2014 by Samoylov Nikolay <samoylovnn {d0g} gmail {d0t} com>
 // MIT License
 // http://github.com/tarampampam/random-user-agent/raw/master/LICENSE
 */
